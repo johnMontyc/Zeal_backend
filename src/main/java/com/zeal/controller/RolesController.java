@@ -24,7 +24,7 @@ public class RolesController {
     @Autowired
     private RolesService rolService;
 
-    @GetMapping("/")
+    @GetMapping
     public List<RolesModel> getAllRoles() {
         return rolService.findAll();
     }
@@ -36,7 +36,7 @@ public class RolesController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/")
+    @PostMapping
     public RolesModel createRol(@RequestBody RolesModel rol) {
         rol.setCreado_rol(new Date(System.currentTimeMillis())); // Establece la fecha de creación
         rol.setModificado_rol(new Date(System.currentTimeMillis())); // Establece la fecha de modificación

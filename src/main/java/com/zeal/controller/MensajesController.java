@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/mensaje")
+@RequestMapping("/api/v1/mensajes")
 public class MensajesController {
 
     @Autowired
     private MensajesRepository mensajeRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public List<MensajesModel> getAllMensajes() {
         return mensajeRepository.findAll();
     }
@@ -38,7 +38,7 @@ public class MensajesController {
         return ResponseEntity.ok(mensaje);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public MensajesModel createMensaje(@RequestBody MensajesModel mensaje) {
         return mensajeRepository.save(mensaje);
     }

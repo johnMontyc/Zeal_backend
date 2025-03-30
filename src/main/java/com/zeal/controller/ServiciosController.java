@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@RequestMapping("/api/v1/servicio")
+@RequestMapping("/api/v1/servicios")
 
 public class ServiciosController {
 

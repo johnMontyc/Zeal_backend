@@ -1,7 +1,7 @@
 package com.zeal.service;
 
-import com.zeal.model.TipoUsuarioModel;
-import com.zeal.repository.TipoUsuarioRepository;
+import com.zeal.model.TipoUsuariosModel;
+import com.zeal.repository.TipoUsuariosRepository;
 
 import java.util.List;
 
@@ -9,21 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TipoUsuarioService {
+public class TipoUsuariosService {
     @Autowired 
-    private TipoUsuarioRepository tipoUsuarioRepo;
+    private TipoUsuariosRepository tipoUsuarioRepo;
 
     // Métodos del CRUD
-    public TipoUsuarioModel saveTipoUser(TipoUsuarioModel tipoUsuario){
+    public TipoUsuariosModel saveTipoUser(TipoUsuariosModel tipoUsuario){
         return tipoUsuarioRepo.save(tipoUsuario);
     }
 
     // Método para ver todos los tipos de usuario
-    public List<TipoUsuarioModel> listAll(){
+    public List<TipoUsuariosModel> listAll(){
         return tipoUsuarioRepo.findAll();
     }
 
     public void deleteTipoUser(Integer id){
         tipoUsuarioRepo.deleteById(id);
     }
+
+    public TipoUsuariosModel findById(Integer id){
+        return tipoUsuarioRepo.findById(id).orElse(null);
+    }
+
+    
 }

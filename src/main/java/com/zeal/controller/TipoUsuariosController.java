@@ -13,17 +13,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/tipo_usuario")
-public class TipoUsuarioController {
+@RequestMapping("/api/v1/tipo_usuarios")
+public class TipoUsuariosController {
     @Autowired
-    private TipoUsuarioService tipoUserService;
+    private TipoUsuariosService tipoUserService;
 
     //Metodos del CRUD
     @PostMapping
-    public TipoUsuarioModel creatTipoUsuario(@RequestBody TipoUsuarioModel tipoUsuario) {
+    public TipoUsuariosModel creatTipoUsuario(@RequestBody TipoUsuariosModel tipoUsuario) {
         return tipoUserService.saveTipoUser(tipoUsuario);
     }
 
@@ -34,8 +35,13 @@ public class TipoUsuarioController {
     } 
     
     @GetMapping
-    public ResponseEntity<Object> getAllTipoUsuario() {
-        return ResponseEntity.ok(tipoUserService.listAll());
+    public List<TipoUsuariosModel> getAllTipoUsuarios() {
+        return tipoUserService.listAll();
     }
-
+    
+    @GetMapping("/{id}")
+    public TipoUsuariosModel getTipoUsuarioById(@PathVariable Integer id) {
+        return tipoUserService.findById(id);
+                
+    }
 }
