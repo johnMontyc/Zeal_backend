@@ -1,4 +1,4 @@
-package com.zeal.zeal;
+package com.zeal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

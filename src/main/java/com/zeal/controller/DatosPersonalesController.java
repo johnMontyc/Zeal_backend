@@ -20,7 +20,7 @@ public class DatosPersonalesController {
     @Autowired
     private DatosPersonalesService datosPersonalesService;
 
-    @GetMapping("/listadatospersonales")
+    @GetMapping
     public List<DatosPersonalesModel> findAll() {
         return datosPersonalesService.findAll();
     }

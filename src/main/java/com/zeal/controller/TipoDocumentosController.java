@@ -20,7 +20,7 @@ public class TipoDocumentosController {
     @Autowired
     private TipoDocumentosService tipoDocumentosService;
 
-    @GetMapping("/listatipodocumentos")
+    @GetMapping
     public List<TipoDocumentosModel> findAll() {
         return tipoDocumentosService.findAll();
     }

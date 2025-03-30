@@ -19,7 +19,7 @@ public class UsuariosController {
     @Autowired
     private UsuariosService usuariosService;
 
-    @GetMapping("/listausuarios")
+    @GetMapping
     public List<UsuariosModel> findAll() {
         return usuariosService.findAll();
     }

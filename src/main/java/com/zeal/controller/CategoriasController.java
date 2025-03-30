@@ -20,7 +20,7 @@ public class CategoriasController {
     @Autowired
     private CategoriasService categoriasService;
 
-    @GetMapping("/listacategorias")
+    @GetMapping
     public List<CategoriasModel> findAll() {
         return categoriasService.findAll();
     }

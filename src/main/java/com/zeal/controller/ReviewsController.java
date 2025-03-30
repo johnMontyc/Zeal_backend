@@ -20,7 +20,7 @@ public class ReviewsController {
     @Autowired
     private ReviewsService reviewsService;
 
-    @GetMapping("api/v1/listareviews")
+    @GetMapping
     public List<ReviewsModel> findAll() {
         return reviewsService.findAll();
     }
