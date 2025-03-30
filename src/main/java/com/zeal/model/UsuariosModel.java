@@ -10,7 +10,7 @@ public class UsuariosModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    private Integer idUSUARIOS;
 
     @Column(nullable = false, unique = true, length = 155)
     private String email;

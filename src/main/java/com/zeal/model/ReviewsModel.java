@@ -12,7 +12,7 @@ public class ReviewsModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_reviews;
+    private Integer idREVIEWS;
 
     @Column(nullable = false)
     private Integer calificacion;
@@ -21,11 +21,11 @@ public class ReviewsModel {
     private String comentario;
 
     @Column(nullable = false)
-    private Date fecha;
+    private Date creado;
 
     @Column(nullable = false)
-    private Integer id_usuarios;
+    private Integer idUSUARIOS;
 
     @Column(nullable = false)
-    private Integer id_servicios;
+    private Integer idSERVICIOS;
 }

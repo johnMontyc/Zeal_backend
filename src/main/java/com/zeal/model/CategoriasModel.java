@@ -10,7 +10,7 @@ public class CategoriasModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_categorias;
+    private Integer idCATEGORIAS;
 
     @Column(nullable = false, unique = true, length = 100)
     private String nombre_categoria;
