@@ -13,4 +13,8 @@ public class TipoDocumentosModel {
 
     @Column(nullable = false, unique = true, length = 155)
     private String nombre_tipo_documento;
+
+    public void setId(Integer id) {
+        this.idTIPODOCUMENTOS = id;
+    }
 }

@@ -24,6 +24,15 @@ public class TipoDocumentosService {
         return tipoDocumentosRepository.save(tipoDocumentosModel);
     }
 
+    public TipoDocumentosModel update(Integer id, TipoDocumentosModel tipoDocumentosModel) {
+        if (tipoDocumentosRepository.existsById(id)) {
+            tipoDocumentosModel.setId(id);
+            return tipoDocumentosRepository.save(tipoDocumentosModel);
+        } else {
+            return null;
+        }
+    }
+
     public void deleteById(Integer id) {
         tipoDocumentosRepository.deleteById(id);
     }

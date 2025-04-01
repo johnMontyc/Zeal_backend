@@ -15,7 +15,7 @@ public class DatosPersonalesModel {
     private String nombre_completo;
 
     @Column(nullable = false, unique = true, length = 45)
-    private String cedula;
+    private String numero_identificacion;
 
     @Column(nullable = false, unique = true, length = 255)
     private String direccion;
@@ -29,6 +29,8 @@ public class DatosPersonalesModel {
     @Column(nullable = false, unique = true)
     private Integer idTIPODOCUMENTOS;
 
-    
+    public void setId(Integer id) {
+        this.idDATOSPERSONALES = id;
+    }
 
 }

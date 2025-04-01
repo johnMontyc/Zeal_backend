@@ -14,4 +14,8 @@ public class CategoriasModel {
 
     @Column(nullable = false, unique = true, length = 100)
     private String nombre_categoria;
+
+    public void setId(Integer id) {
+        this.idCATEGORIAS = id;
+    }
 }

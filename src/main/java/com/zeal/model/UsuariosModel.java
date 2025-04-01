@@ -19,5 +19,9 @@ public class UsuariosModel {
     private String pass_user;
 
     @Column(nullable = false)
-    private Boolean estado_user;
+    private byte estado_user = 1;
+
+    public void setId(Integer id) {
+        this.idUSUARIOS = id;
+    }
 }
