@@ -40,7 +40,7 @@ public class TipoDocumentosController {
     public TipoDocumentosModel update(@PathVariable Integer id, @RequestBody TipoDocumentosModel tipoDocumentosModel) {
         return tipoDocumentosService.update(id, tipoDocumentosModel);
     }
-
+  
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         tipoDocumentosService.deleteById(id);
