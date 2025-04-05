@@ -28,4 +28,13 @@ public class UsuariosService {
         usuariosRepository.deleteById(id);
     }
 
+    public UsuariosModel update(Integer id, UsuariosModel usuariosModel) {
+        if (usuariosRepository.existsById(id)) {
+            usuariosModel.setId(id);
+            return usuariosRepository.save(usuariosModel);
+        } else {
+            return null;
+        }
+    }
+
 }
