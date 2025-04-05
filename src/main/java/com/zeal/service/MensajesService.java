@@ -18,7 +18,7 @@ public class MensajesService {
         return mensajeRepository.findAll();
     }
 
-    public Optional<MensajesModel> findById(Long id) {
+    public Optional<MensajesModel> findById(Integer id) {
         return mensajeRepository.findById(id);
     }
 
@@ -26,7 +26,16 @@ public class MensajesService {
         return mensajeRepository.save(mensaje);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         mensajeRepository.deleteById(id);
+    }
+
+    public MensajesModel update(Integer id, MensajesModel mensaje) {
+        if (mensajeRepository.existsById(id)) {
+            mensaje.setId(id);
+            return mensajeRepository.save(mensaje);
+        } else {
+            return null;
+        }
     }
 }

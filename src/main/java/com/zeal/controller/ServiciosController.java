@@ -43,7 +43,7 @@ public class ServiciosController {
 
     @PutMapping("/{id}")
     public ServiciosModel updateServicio(@PathVariable Integer id, @RequestBody ServiciosModel servicioModel) {
-        servicioModel.setId_servicio(id);
+        servicioModel.setIdSERVICIOS(id);
         return servicioRepository.save(servicioModel);
     }
 

@@ -30,8 +30,7 @@ public class ContratosService {
         contratoRepository.deleteById(id);
     }
 
-    public Object obtenerTodos() {
-        
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerTodos'");
+    public void delete(ContratosModel contrato) {
+        contratoRepository.delete(contrato);
     }
 }

@@ -1,5 +1,7 @@
 package com.zeal.model;
 
+import java.sql.Timestamp;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,16 +12,31 @@ public class ContratosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_contrato;
+    private Integer idCONTRATOS;
 
     @Column(nullable = false, unique = true, length = 100)
-    private String estado_contrato;
+    private byte estado;
 
     @Column(nullable = false, length = 255)
-    private String creado_contrato;
+    private Timestamp creado;
 
     @Column(nullable = false, length = 50)
-    private String completado_contrato;
+    private Timestamp completado;
+
+    @Column(nullable = false, unique = true)
+    private Integer idCLIENTE;
+
+    @Column(nullable = false, unique = true)
+    private Integer idPROVEDOR;
+
+    @Column(nullable = false, unique = true)
+    private Integer idSERVICIOS;
+
+    public void setId(Integer id) {
+        this.idCONTRATOS = id;
+    }
 
 
 }
+
+

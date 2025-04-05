@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
+
 @RestController
 @RequestMapping("/api/v1/mensajes")
 public class MensajesController {
@@ -25,12 +27,13 @@ public class MensajesController {
     private MensajesRepository mensajeRepository;
 
     @GetMapping
-    public List<MensajesModel> getAllMensajes() {
+    public List<MensajesModel> findAll(){
         return mensajeRepository.findAll();
     }
+    
 
     @GetMapping("/{id}")
-    public ResponseEntity<MensajesModel> getMensajeById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<MensajesModel> getMensajeById(@PathVariable(value = "id") Integer id) {
         MensajesModel mensaje = mensajeRepository.findById(id).orElse(null);
         if (mensaje == null) {
             return ResponseEntity.notFound().build();
@@ -44,21 +47,21 @@ public class MensajesController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MensajesModel> updateMensaje(@PathVariable(value = "id") Long id,
+    public ResponseEntity<MensajesModel> updateMensaje(@PathVariable(value = "id") Integer id,
             @RequestBody MensajesModel mensajeDetails) {
         MensajesModel mensaje = mensajeRepository.findById(id).orElse(null);
         if (mensaje == null) {
             return ResponseEntity.notFound().build();
         }
-        mensaje.setMensaje_mensaje(mensajeDetails.getMensaje_mensaje());
-        mensaje.setLeido_mensaje(mensajeDetails.getLeido_mensaje());
-        mensaje.setEnviado_mensaje(mensajeDetails.getEnviado_mensaje());
+        mensaje.setMensaje(mensajeDetails.getMensaje());
+        mensaje.setLeido(mensajeDetails.getLeido());
+        mensaje.setEnviado(mensajeDetails.getEnviado());
         final MensajesModel updatedMensaje = mensajeRepository.save(mensaje);
         return ResponseEntity.ok(updatedMensaje);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMensaje(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<Void> deleteMensaje(@PathVariable(value = "id") Integer id) {
         MensajesModel mensaje = mensajeRepository.findById(id).orElse(null);
         if (mensaje == null) {
             return ResponseEntity.notFound().build();

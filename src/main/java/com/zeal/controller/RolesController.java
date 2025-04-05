@@ -1,6 +1,6 @@
 package com.zeal.controller;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,16 +38,16 @@ public class RolesController {
 
     @PostMapping
     public RolesModel createRol(@RequestBody RolesModel rol) {
-        rol.setCreado_rol(new Date(System.currentTimeMillis())); // Establece la fecha de creación
-        rol.setModificado_rol(new Date(System.currentTimeMillis())); // Establece la fecha de modificación
-        return rolService.save(rol);
-    }
+    return rolService.save(rol);
+    
+}
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<RolesModel> updateRol(@PathVariable(value = "id") Integer id, @RequestBody RolesModel rolDetails) {
         return rolService.findById(id)
                 .map(existingRol -> {
-                    existingRol.setModificado_rol(new Date(System.currentTimeMillis())); // Actualiza la fecha de modificación
+                    existingRol.setModificado(new Timestamp(System.currentTimeMillis())); // Actualiza la fecha de modificación
                     RolesModel updatedRol = rolService.save(existingRol);
                     return ResponseEntity.ok(updatedRol);
                 })

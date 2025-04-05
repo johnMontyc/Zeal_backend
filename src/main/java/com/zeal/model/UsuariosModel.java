@@ -10,7 +10,7 @@ public class UsuariosModel {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    private Integer idUSUARIOS;
 
     @Column(nullable = false, unique = true, length = 155)
     private String email;
@@ -19,5 +19,9 @@ public class UsuariosModel {
     private String pass_user;
 
     @Column(nullable = false)
-    private Boolean estado_user;
+    private byte estado_user = 1;
+
+    public void setId(Integer id) {
+        this.idUSUARIOS = id;
+    }
 }

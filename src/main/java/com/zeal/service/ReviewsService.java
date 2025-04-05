@@ -27,4 +27,14 @@ public class ReviewsService {
     public void deleteById(Integer id) {
         reviewsRepository.deleteById(id);
     }
+
+    public ReviewsModel update(Integer id, ReviewsModel reviewsModel) {
+        if (reviewsRepository.existsById(id)) {
+            reviewsModel.setId(id);
+            return reviewsRepository.save(reviewsModel);
+        } else {
+            return null;
+        }
+    }
+
 }

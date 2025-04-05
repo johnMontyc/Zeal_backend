@@ -9,13 +9,13 @@ public class DatosPersonalesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_datos_personales;
+    private Integer idDATOSPERSONALES;
 
     @Column(nullable = false, unique = true, length = 255)
     private String nombre_completo;
 
     @Column(nullable = false, unique = true, length = 45)
-    private String cedula;
+    private String numero_identificacion;
 
     @Column(nullable = false, unique = true, length = 255)
     private String direccion;
@@ -24,11 +24,13 @@ public class DatosPersonalesModel {
     private String telefono;
 
     @Column(nullable = false, unique = true)
-    private Integer id_usuario;
+    private Integer idUSUARIOS;
 
     @Column(nullable = false, unique = true)
-    private Integer id_tipo_documento;
+    private Integer idTIPODOCUMENTOS;
 
-    
+    public void setId(Integer id) {
+        this.idDATOSPERSONALES = id;
+    }
 
 }
