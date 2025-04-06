@@ -1,7 +1,6 @@
 package com.zeal.controller;
 
-import com.zeal.model.CategoriasModel;
-import com.zeal.service.CategoriasService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,38 +11,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.zeal.model.RolesModel;
+import com.zeal.service.RolesService;
 
 @RestController
-@RequestMapping("/api/v1/categorias")
-public class CategoriasController {
+@RequestMapping("/api/v1/rol")
+public class RolesController {
 
     @Autowired
-    private CategoriasService categoriasService;
+    private RolesService rolService;
 
     @GetMapping
-    public List<CategoriasModel> findAll() {
-        return categoriasService.findAll();
+    public List<RolesModel> getAllRoles() {
+        return rolService.findAll();
     }
 
     @GetMapping("/{id}")
-    public CategoriasModel findById(@PathVariable Integer id) {
-        return categoriasService.findById(id);
+    public RolesModel getRolById(@PathVariable Integer id) {
+        return rolService.findById(id);
     }
 
     @PostMapping
-    public CategoriasModel save(@RequestBody CategoriasModel categoriasModel) {
-        return categoriasService.save(categoriasModel);
-    }
+    public RolesModel createRol(@RequestBody RolesModel rol) {
+    return rolService.save(rol);
+    
+}
+    
 
     @PutMapping("/{id}")
-    public CategoriasModel update(@PathVariable Integer id, @RequestBody CategoriasModel categoriasModel) {
-        return categoriasService.update(id, categoriasModel);
+    public RolesModel update(@PathVariable Integer id, @RequestBody RolesModel rol){
+        return rolService.update(id, rol);
     }
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
-        categoriasService.deleteById(id);
+        rolService.deleteById(id);
     }
-
 }

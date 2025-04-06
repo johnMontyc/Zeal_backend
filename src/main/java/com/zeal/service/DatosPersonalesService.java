@@ -27,4 +27,15 @@ public class DatosPersonalesService {
     public void deleteById(Integer id) {
         datosPersonalesRepository.deleteById(id);
     }
+
+    public DatosPersonalesModel update(Integer id, DatosPersonalesModel datosPersonalesModel) {
+        if (datosPersonalesRepository.existsById(id)) {
+            datosPersonalesModel.setId(id);
+            return datosPersonalesRepository.save(datosPersonalesModel);
+        } else {
+            return null;
+        }
+    }
+
 }
+

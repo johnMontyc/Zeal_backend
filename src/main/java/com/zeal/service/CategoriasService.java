@@ -27,4 +27,15 @@ public class CategoriasService {
     public void deleteById(Integer id) {
         categoriasRepository.deleteById(id);
     }
+
+    public CategoriasModel update(Integer id, CategoriasModel categoriasModel) {
+        if (categoriasRepository.existsById(id)) {
+            categoriasModel.setId(id);
+            return categoriasRepository.save(categoriasModel);
+        } else {
+            return null;
+        }
+    }
+
 }
+

@@ -1,5 +1,6 @@
 package com.zeal.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import jakarta.persistence.*;
@@ -7,30 +8,36 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "REVIEWS")
-public class ReviewsModel {
-
+@Table(name = "SERVICIOS")
+public class ServiciosModel {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idREVIEWS;
-
-    @Column(nullable = false)
-    private float calificacion;
+    private Integer idSERVICIOS;
 
     @Column(nullable = false, unique = true, length = 255)
-    private String comentario;
+    private String titulo;
+
+    @Column(nullable = false, unique = true,length = 15)
+    private String descripcion;
+
+    @Column(name = "precio", columnDefinition = "DECIMAL(10,2)")
+    private BigDecimal precio;  
+
+    @Column(nullable = false)
+    private byte disponibilidad;
 
     @Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp creado;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private Integer idUSUARIOS;
 
-    @Column(nullable = false)
-    private Integer idSERVICIOS;
+    @Column(nullable = false, unique = true)
+    private Integer idCATEGORIAS;
 
     public void setId(Integer id) {
-        this.idREVIEWS = id;
+        this.idSERVICIOS = id;
     }
 
     @PrePersist
@@ -41,4 +48,3 @@ public class ReviewsModel {
     }
 
 }
-

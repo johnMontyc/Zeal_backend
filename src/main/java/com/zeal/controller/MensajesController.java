@@ -1,7 +1,10 @@
 package com.zeal.controller;
 
-import com.zeal.model.CategoriasModel;
-import com.zeal.service.CategoriasService;
+import java.util.List;
+
+import com.zeal.model.MensajesModel;
+import com.zeal.service.MensajesService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,38 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+
+
 
 @RestController
-@RequestMapping("/api/v1/categorias")
-public class CategoriasController {
+@RequestMapping("/api/v1/mensajes")
+public class MensajesController {
 
     @Autowired
-    private CategoriasService categoriasService;
+    private MensajesService mensajesService;
 
     @GetMapping
-    public List<CategoriasModel> findAll() {
-        return categoriasService.findAll();
+    public List<MensajesModel> findAll(){
+        return mensajesService.findAll();
     }
+    
 
     @GetMapping("/{id}")
-    public CategoriasModel findById(@PathVariable Integer id) {
-        return categoriasService.findById(id);
+    public MensajesModel findById(@PathVariable(value = "id") Integer id) {
+        return mensajesService.findById(id);
     }
 
     @PostMapping
-    public CategoriasModel save(@RequestBody CategoriasModel categoriasModel) {
-        return categoriasService.save(categoriasModel);
+    public MensajesModel createMensaje(@RequestBody MensajesModel mensaje) {
+        return mensajesService.save(mensaje);
     }
 
     @PutMapping("/{id}")
-    public CategoriasModel update(@PathVariable Integer id, @RequestBody CategoriasModel categoriasModel) {
-        return categoriasService.update(id, categoriasModel);
+    public MensajesModel update(@PathVariable Integer id, @RequestBody MensajesModel mensaje) {
+        return mensajesService.update(id, mensaje);
     }
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
-        categoriasService.deleteById(id);
+        mensajesService.deleteById(id);
     }
-
 }
