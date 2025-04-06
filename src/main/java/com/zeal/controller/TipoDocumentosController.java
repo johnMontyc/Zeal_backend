@@ -35,7 +35,7 @@ public class TipoDocumentosController {
     public TipoDocumentosModel save(@RequestBody TipoDocumentosModel tipoDocumentosModel) {
         return tipoDocumentosService.save(tipoDocumentosModel);
     }
-
+    
     @PutMapping("/{id}")
     public TipoDocumentosModel update(@PathVariable Integer id, @RequestBody TipoDocumentosModel tipoDocumentosModel) {
         return tipoDocumentosService.update(id, tipoDocumentosModel);

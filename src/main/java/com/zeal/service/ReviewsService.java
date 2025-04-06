@@ -28,13 +28,16 @@ public class ReviewsService {
         reviewsRepository.deleteById(id);
     }
 
-    public ReviewsModel update(Integer id, ReviewsModel reviewsModel) {
-        if (reviewsRepository.existsById(id)) {
+    public ReviewsModel update(Integer id, ReviewsModel reviewsModel){
+        ReviewsModel reviewsModelExistente = reviewsRepository.findById(id).orElse(null);
+        
+        if (reviewsModelExistente != null){
+
+            reviewsModel.setCreado(reviewsModelExistente.getCreado());
             reviewsModel.setId(id);
             return reviewsRepository.save(reviewsModel);
-        } else {
-            return null;
         }
+        return null;
     }
 
 }

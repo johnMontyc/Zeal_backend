@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MensajesService {
@@ -18,8 +17,8 @@ public class MensajesService {
         return mensajeRepository.findAll();
     }
 
-    public Optional<MensajesModel> findById(Integer id) {
-        return mensajeRepository.findById(id);
+    public MensajesModel findById(Integer id) {
+        return mensajeRepository.findById(id).orElse(null);
     }
 
     public MensajesModel save(MensajesModel mensaje) {
@@ -30,12 +29,15 @@ public class MensajesService {
         mensajeRepository.deleteById(id);
     }
 
-    public MensajesModel update(Integer id, MensajesModel mensaje) {
-        if (mensajeRepository.existsById(id)) {
+    public MensajesModel update(Integer id, MensajesModel mensaje){
+        MensajesModel mensajeExistente = mensajeRepository.findById(id).orElse(null);
+        
+        if (mensajeExistente != null){
+
+            mensaje.setEnviado(mensajeExistente.getEnviado());
             mensaje.setId(id);
             return mensajeRepository.save(mensaje);
-        } else {
-            return null;
         }
+        return null;
     }
 }

@@ -16,7 +16,7 @@ public class TipoUsuariosModel {
     private String nombre_tipo_usuario;
 
     @Column(nullable = false, length = 255)
-    private byte estado_tipo_user;
+    private byte estado_tipo_user = 1;
 
     public void setId(Integer id) {
         this.idTIPOUSUARIO = id;

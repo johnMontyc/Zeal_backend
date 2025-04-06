@@ -31,5 +31,12 @@ public class TipoUsuariosService {
         return tipoUsuarioRepo.findById(id).orElse(null);
     }
 
-    
+    public TipoUsuariosModel update(Integer id, TipoUsuariosModel tipoUsuario) {
+        if (tipoUsuarioRepo.existsById(id)) {
+            tipoUsuario.setId(id);
+            return tipoUsuarioRepo.save(tipoUsuario);
+        } else {
+            return null;
+        }
+    }
 }

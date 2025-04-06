@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,30 +41,16 @@ public class ContratosController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ContratosModel> update(@PathVariable Integer id, @RequestBody ContratosModel contratosModel) {
-        return contratoService.findById(id)
-                .map(existingContrato -> {
-                    existingContrato.setEstado(contratosModel.getEstado());
-                    existingContrato.setCreado(contratosModel.getCreado());
-                    existingContrato.setCompletado(contratosModel.getCompletado());
-                    ContratosModel updatedContrato = contratoService.save(existingContrato);
-                    return ResponseEntity.ok(updatedContrato);
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public ContratosModel update(@PathVariable Integer id, @RequestBody ContratosModel contratosModel) {
+        return contratoService.update(id, contratosModel);
+    }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id) {
+        contratoService.deleteById(id);
+    }
 
-            }
-            @DeleteMapping("/{id}")
-            public ResponseEntity<String> delete(@PathVariable Integer id) {
-                if (contratoService.findById(id).isPresent()) {
-                    contratoService.deleteById(id);
-                    return ResponseEntity.ok("Contrato eliminado con éxito.");
-                } else {
-                    return ResponseEntity.notFound().build();
-                }
-            }
-
-        }
+}
  
     
     

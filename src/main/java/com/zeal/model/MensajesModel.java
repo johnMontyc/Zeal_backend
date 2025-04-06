@@ -1,7 +1,7 @@
 package com.zeal.model;
 
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,10 +19,10 @@ public class MensajesModel {
     private String mensaje;
 
     @Column(nullable = false, length = 50)
-    private byte leido;
+    private byte leido = 0;
 
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime enviado;
+    private Timestamp enviado;
 
     @Column(nullable = false, unique = true)
     private Integer idEMISOR;
@@ -34,5 +34,11 @@ public class MensajesModel {
         this.idMENSAJES = id;
     }
 
+    @PrePersist
+    protected void onCreate() {
+        if (enviado == null) {
+            enviado = new Timestamp(System.currentTimeMillis());
+        }
+    }
    
 }

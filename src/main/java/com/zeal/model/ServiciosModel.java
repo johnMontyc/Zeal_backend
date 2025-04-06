@@ -39,4 +39,12 @@ public class ServiciosModel {
     public void setId(Integer id) {
         this.idSERVICIOS = id;
     }
+
+    @PrePersist
+    protected void onCreate() {
+        if (creado == null) {
+            creado = new Timestamp(System.currentTimeMillis());
+        }
+    }
+
 }

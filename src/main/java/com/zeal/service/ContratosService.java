@@ -33,4 +33,16 @@ public class ContratosService {
     public void delete(ContratosModel contrato) {
         contratoRepository.delete(contrato);
     }
+
+    public ContratosModel update(Integer id, ContratosModel contrato){
+        ContratosModel contratoExistente = contratoRepository.findById(id).orElse(null);
+        
+        if (contratoExistente != null){
+
+            contrato.setCreado(contratoExistente.getCreado());
+            contrato.setId(id);
+            return contratoRepository.save(contrato);
+        }
+        return null;
+    }
 }

@@ -5,13 +5,13 @@ import com.zeal.service.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
@@ -29,16 +29,20 @@ public class TipoUsuariosController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteTipoUsuario(@PathVariable Integer id) {
+    public void deleteTipoUsuario(@PathVariable Integer id) {
         tipoUserService.deleteTipoUser(id);
-        return ResponseEntity.noContent().build();
-    } 
+    }
     
     @GetMapping
     public List<TipoUsuariosModel> getAllTipoUsuarios() {
         return tipoUserService.listAll();
     }
     
+    @PutMapping("/{id}")
+    public TipoUsuariosModel updateTipoUsuario(@PathVariable Integer id, @RequestBody TipoUsuariosModel tipoUsuario) {
+        return tipoUserService.update(id, tipoUsuario);
+    }
+
     @GetMapping("/{id}")
     public TipoUsuariosModel getTipoUsuarioById(@PathVariable Integer id) {
         return tipoUserService.findById(id);

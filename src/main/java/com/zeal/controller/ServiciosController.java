@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zeal.model.ServiciosModel;
-import com.zeal.repository.ServiciosRepository;
+import com.zeal.service.ServiciosService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,32 +24,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ServiciosController {
 
     @Autowired
-    private ServiciosRepository servicioRepository;
+    private ServiciosService servicioService;
 
     @GetMapping
     public List<ServiciosModel> obtenerServicios() {
-        return servicioRepository.findAll();
+        return servicioService.findAll();
     }
 
     @PostMapping
     public ServiciosModel createServicio(@RequestBody ServiciosModel servicioModel) {
-        return servicioRepository.save(servicioModel);
+        return servicioService.save(servicioModel);
     }
 
     @GetMapping("/{id}")
     public ServiciosModel obtenerServicio(@PathVariable Integer id) {
-        return servicioRepository.findById(id).orElse(null);
+        return servicioService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public ServiciosModel updateServicio(@PathVariable Integer id, @RequestBody ServiciosModel servicioModel) {
-        servicioModel.setIdSERVICIOS(id);
-        return servicioRepository.save(servicioModel);
+    public ServiciosModel update(@PathVariable Integer id, @RequestBody ServiciosModel serviciosModel){
+        return servicioService.update(id, serviciosModel);
     }
 
     @DeleteMapping("/{id}")
     public void deleteServicio(@PathVariable Integer id) {
-        servicioRepository.deleteById(id);
+        servicioService.deleteById(id);
     
 
     }

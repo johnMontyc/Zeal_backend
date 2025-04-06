@@ -32,6 +32,14 @@ public class RolesModel {
         this.idROLES = id;
     }
 
+    @PrePersist
+    protected void onCreate() {
+        if (creado == null || modificado == null) {
+            creado = new Timestamp(System.currentTimeMillis());
+            modificado = new Timestamp(System.currentTimeMillis());
+        }
+    }
+
     
 }
    

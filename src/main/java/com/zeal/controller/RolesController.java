@@ -1,10 +1,7 @@
 package com.zeal.controller;
 
-import java.sql.Timestamp;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,10 +27,8 @@ public class RolesController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RolesModel> getRolById(@PathVariable(value = "id") Integer id) {
-        return rolService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public RolesModel getRolById(@PathVariable Integer id) {
+        return rolService.findById(id);
     }
 
     @PostMapping
@@ -44,23 +39,12 @@ public class RolesController {
     
 
     @PutMapping("/{id}")
-    public ResponseEntity<RolesModel> updateRol(@PathVariable(value = "id") Integer id, @RequestBody RolesModel rolDetails) {
-        return rolService.findById(id)
-                .map(existingRol -> {
-                    existingRol.setModificado(new Timestamp(System.currentTimeMillis())); // Actualiza la fecha de modificación
-                    RolesModel updatedRol = rolService.save(existingRol);
-                    return ResponseEntity.ok(updatedRol);
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public RolesModel update(@PathVariable Integer id, @RequestBody RolesModel rol){
+        return rolService.update(id, rol);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteRol(@PathVariable(value = "id") Integer id) {
-        return rolService.findById(id)
-                .map(_ -> {
-                    rolService.deleteById(id);;
-                    return ResponseEntity.noContent().build();
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public void deleteById(@PathVariable Integer id) {
+        rolService.deleteById(id);
     }
 }

@@ -15,12 +15,12 @@ public class ContratosModel {
     private Integer idCONTRATOS;
 
     @Column(nullable = false, unique = true, length = 100)
-    private byte estado;
+    private byte estado = 1;
 
     @Column(nullable = false, length = 255)
     private Timestamp creado;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private Timestamp completado;
 
     @Column(nullable = false, unique = true)
@@ -36,6 +36,12 @@ public class ContratosModel {
         this.idCONTRATOS = id;
     }
 
+    @PrePersist
+    protected void onCreate() {
+        if (creado == null) {
+            creado = new Timestamp(System.currentTimeMillis());
+        }
+    }
 
 }
 

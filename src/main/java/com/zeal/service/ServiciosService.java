@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ServiciosService {
@@ -20,8 +19,8 @@ public class ServiciosService {
     }
 
     // Buscar un registro por ID
-    public Optional<ServiciosModel> findById(Integer id) {
-        return serviciosRepository.findById(id);
+    public ServiciosModel findById(Integer id) {
+        return serviciosRepository.findById(id).orElse(null);
     }
 
     // Guardar o actualizar un registro
@@ -32,5 +31,16 @@ public class ServiciosService {
     // Eliminar un registro por ID
     public void deleteById(Integer id) {
         serviciosRepository.deleteById(id);
+    }
+
+    public ServiciosModel update(Integer id, ServiciosModel servicio) {
+        ServiciosModel servicioExistente = serviciosRepository.findById(id).orElse(null);
+
+        if (servicioExistente != null) {
+            servicio.setCreado(servicioExistente.getCreado());
+            servicio.setId(id);
+            return serviciosRepository.save(servicio);
+        }
+        return null;
     }
 }
